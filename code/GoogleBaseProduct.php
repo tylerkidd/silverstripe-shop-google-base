@@ -50,7 +50,8 @@ class GoogleBaseProduct extends SiteTreeExtension {
 			return !empty($categoryList) ? implode(' > ', $categoryList) : false;
 		}
 		
-		if($productCategories = $product->ProductCategories()){
+		
+		if($productCategories = $parent->ProductCategories){
 			foreach($productCategories as $category){
 				if($categoryList = $category->GoogleBaseCategoryList()){
 					if(!empty($categoryList)){

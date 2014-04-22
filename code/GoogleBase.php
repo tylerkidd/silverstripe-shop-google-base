@@ -16,7 +16,7 @@ class GoogleBase extends Controller {
 			die('A Limit is required, please try again using something like: <a href="'.$link.'">'.$link.'</a>');
 		}
 		
-		$products = Product::get()->where("Title != '' AND Content != '' AND (VFI_Price != '0.00' OR VFI_Price > 0)");
+		$products = Product::get();//->where("Title != '' AND Content != '')");
 		
 		$productsItems = PaginatedList::create($products, $request)
 			->setPageLength($limit)
@@ -33,7 +33,7 @@ class GoogleBase extends Controller {
 	}
 	
 	function getinfo($request){
-		$limit = $request->getVar('limit') ? $request->getVar('limit') : 10;
+		$limit = $request->getVar('limit') ? $request->getVar('limit') : 1000;
 		$products = Product::get()->where("Title != '' AND Content != ''");
 		
 		$productsItems = PaginatedList::create($products, $request)
@@ -49,7 +49,7 @@ class GoogleBase extends Controller {
 		$setcount = $sets;
 		
 		echo '<p>There are a total of <strong>'.$count.'</strong> products.</p>';
-		echo '<p>Google should be provided with <strong>'.$setcount.'</strong> different feeds.</strong>';
+		echo '<p>Google should be provided with <strong>'.$setcount.'</strong> different feeds, showing '.$limit.' per page.</strong>';
 		
 		for($i = 0; $i <= $sets; $i++){
 			
