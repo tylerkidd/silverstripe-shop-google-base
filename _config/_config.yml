@@ -1,0 +1,6 @@
+ProductCategory:
+  extensions:
+    - GoogleBaseCategory
+Product:
+  extensions:
+    - GoogleBaseProduct

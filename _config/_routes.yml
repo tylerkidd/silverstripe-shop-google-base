@@ -1,0 +1,7 @@
+---
+Name: googlebaseroutes
+After: app/routes#coreroutes
+---
+Director:
+  rules:
+    'googlebase' : 'GoogleBase'
