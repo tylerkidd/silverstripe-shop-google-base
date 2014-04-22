@@ -1,0 +1,19 @@
+{
+    "name": "tylerkidd/silverstripe-shop-google-base",
+    "description": "Google Base",
+    "keywords": ["shop", "google base", "product feed", "silverstripe"],
+    "type": "silverstripe-module",
+    "target-dir": "shop_google_base",
+    "homepage": "https://github.com/tylerkidd/silverstripe-shop-fedex-shipping/",
+    "license": "BSD-3-Clause",
+    "authors": [{
+        "name": "Tyler Kidd",
+        "email": "tyler@adaircreative.com"
+    }],
+	"extra": {
+		"installer-name": "shop_google_base"
+	},
+    "require": {
+        "silverstripe/framework": ">=3.1"
+    }
+}
