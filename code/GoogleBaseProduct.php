@@ -1,29 +1,32 @@
 <?php
 
-class GoogleBaseProduct extends SiteTreeExtension {
+class GoogleBaseProduct extends DataExtension {
 
 	
+	public function getGoogleBaseTitle(){
+		return $this->owner->Title;
+	}
+	
 	public function getGoogleBaseCategoryList(){
-	
-		$allCategories = ArrayList::create();
-	
-		if($list = $this->owner->GoogleBaseCategories){
-			$categories = explode(' > ', $list);
+
+		$list = $this->owner->GoogleBaseCategories;
+		
+		if($list){
+			$allCategories = ArrayList::create();
 			
+			$categories = explode(' > ', $list);
 			
 			$string = '';
 			$count = 0;
 			
 			$used = array();
-			
-			//Debug::dump($categories);
-			
+						
 			foreach($categories as $k => $category){
-
+	
 				if(isset($used[$category])) continue;
 				
 				$used[$category] = $category;
-
+	
 				
 				++$count;
 				if($count == 1){
@@ -32,7 +35,6 @@ class GoogleBaseProduct extends SiteTreeExtension {
 					$string .= ' > '.trim($category);
 				}
 				
-				//die('String: '.$string);
 				$allCategories->push(ArrayData::create(array('Category' => $string)));
 			}
 			

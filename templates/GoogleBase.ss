@@ -8,7 +8,7 @@
 <% if $Products %>
 <% loop $Products %>
 	<item>
-		<% if $Title %><title>$Title.XML</title><% end_if %>
+		<% if $GoogleBaseTitle %><title>$GoogleBaseTitle.XML</title><% end_if %>
 		<g:condition>New</g:condition>		
 		<% if $Content %>
 			<description><![CDATA[ {$Content.NoHtml.XML} ]]></description>
@@ -42,8 +42,8 @@
 			<g:product_type><![CDATA[{$Parent.Title}]]></g:product_type>
 		<% end_if %>
 
-		<% if ProductCategories %>
-			<% loop ProductCategories %>
+		<% if $ProductCategories %>
+			<% loop $ProductCategories %>
 				<g:product_type><![CDATA[{$Title}]]></g:product_type>
 			<% end_loop %>
 		<% end_if %>

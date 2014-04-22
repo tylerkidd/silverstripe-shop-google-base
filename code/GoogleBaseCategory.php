@@ -6,7 +6,6 @@ class GoogleBaseCategory extends SiteTreeExtension {
 		'GoogleBaseCategory' => 'Varchar(255)'
 	);
 	
-	
 	public function updateCMSFields(FieldList $fields) {
 		$fields->addFieldtoTab('Root.GoogleBase', TextField::create('GoogleBaseCategory','Google Base Category'));
 	}

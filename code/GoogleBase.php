@@ -7,7 +7,18 @@ class GoogleBase extends Controller {
 		'getinfo'
 	);
 	
-	function products($request){
+	function ProductList(){
+
+		$products = $this->extend('alterProducts');
+
+		if(count($products)) {
+			$products = array_pop($products);
+		}
+
+		return $products ? $products : Product::get();
+	}
+	
+	function products($request){	
 	
 		$limit = $request->getVar('limit') ? $request->getVar('limit') : false;
 		
@@ -16,31 +27,34 @@ class GoogleBase extends Controller {
 			die('A Limit is required, please try again using something like: <a href="'.$link.'">'.$link.'</a>');
 		}
 		
-		$products = Product::get();//->where("Title != '' AND Content != '')");
+		$products = $this->ProductList();
 		
-		$productsItems = PaginatedList::create($products, $request)
-			->setPageLength($limit)
-			->setPaginationGetVar('start');
-		
-		$data = array(
-			'FeedTitle'		=> SiteConfig::current_site_config()->Title,
-			'FeedLink'		=> Director::absoluteURL('/'),
-			'FeedDescription'	=> 'Google Base Feed',
-			'Products'	=> $productsItems
-		);
-				
-		return $this->renderWith('GoogleBase', $data);
+		if($products && $products->Count() > 0){
+			
+			$productsItems = PaginatedList::create($products, $request)
+				->setPageLength($limit)
+				->setPaginationGetVar('start');
+			
+			$data = array(
+				'FeedTitle'		=> SiteConfig::current_site_config()->Title,
+				'FeedLink'		=> Director::absoluteURL('/'),
+				'FeedDescription'	=> 'Google Base Feed',
+				'Products'	=> $productsItems
+			);
+					
+			return $this->renderWith('GoogleBase', $data);
+			
+		}
 	}
 	
 	function getinfo($request){
 		$limit = $request->getVar('limit') ? $request->getVar('limit') : 1000;
-		$products = Product::get()->where("Title != '' AND Content != ''");
+
+		$products = $this->ProductList();
 		
 		$productsItems = PaginatedList::create($products, $request)
 			->setPageLength($limit)
 			->setPaginationGetVar('start');
-		
-		
 		
 		$count = $products->Count();
 			
