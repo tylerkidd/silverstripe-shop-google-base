@@ -4,7 +4,7 @@
     "keywords": ["shop", "google base", "product feed", "silverstripe"],
     "type": "silverstripe-module",
     "target-dir": "shop_google_base",
-    "homepage": "https://github.com/tylerkidd/silverstripe-shop-fedex-shipping/",
+    "homepage": "https://github.com/tylerkidd/silverstripe-shop-google-base/",
     "license": "BSD-2-Clause",
     "authors": [{
         "name": "Tyler Kidd",
