@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Extends: ProductCategory
+ * Extension to add GoogleBaseCategory db field and CMS fields.
+ *
+ *
+ * @author Tyler Kidd <tyler@adaircreative.com>
+ * @date 04.23.2014
+ */
+
 class GoogleBaseCategory extends SiteTreeExtension {
 	
 	static $db = array(
@@ -9,7 +18,12 @@ class GoogleBaseCategory extends SiteTreeExtension {
 	public function updateCMSFields(FieldList $fields) {
 		$fields->addFieldtoTab('Root.GoogleBase', TextField::create('GoogleBaseCategory','Google Base Category'));
 	}
-	
+
+
+	/**
+	 * Get a recursive list of Product Categories where parents are ProductCategories
+	 * @return array of categories
+	 */
 	public function GoogleBaseCategoryList(){
 		
 		$categoryList = array();

@@ -6,7 +6,13 @@ class GoogleBase extends Controller {
 		'products',
 		'getinfo'
 	);
-	
+
+
+	/**
+	 * Returns a list of Products.
+	 * extend with alterProducts to use a different set other than Product::get()
+	 * @return DataList or ArrayList of Products
+	 */
 	function ProductList(){
 
 		$products = $this->extend('alterProducts');
@@ -17,7 +23,12 @@ class GoogleBase extends Controller {
 
 		return $products ? $products : Product::get();
 	}
-	
+
+	/**
+	 * Action: get list of products for base feed
+	 * @param SS_HTTPRequest $request
+	 * @return XML list of GoogleBase products
+	 */
 	function products($request){	
 	
 		$limit = $request->getVar('limit') ? $request->getVar('limit') : false;
@@ -46,6 +57,11 @@ class GoogleBase extends Controller {
 			
 		}
 	}
+
+	/**
+	 * Action: get info about product set to help you determine how to appropriately use /products
+	 * @param SS_HTTPRequest $request
+	 */
 	
 	function getinfo($request){
 		$limit = $request->getVar('limit') ? $request->getVar('limit') : 1000;
